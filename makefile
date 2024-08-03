@@ -1,19 +1,16 @@
-all: $(APP)
 CC = gcc
 CFLAGS = -Wall -g
 INCLUDES =
 LINKS =
 LIBS =
-APP = app
+OUT_DIR = out
+BIN_DIR = bin
 
-%.o : %.c
+$(OUT_DIR)/%.o : %.c
 	$(CC) $(CFLAGS) $(INCLUDES) $(LINKS) -c $< -o $@ $(LIBS)
 
-$(APP) : $(patsubst %.c, %.o, $(wildcard *.c))
-	$(CC) $(CFLAGS) $(INCLUDES) $(LINKS) $^ -o $@ $(LIBS)
+$(BIN_DIR)/%.out : $(OUT_DIR)/%.o
+	$(CC) $(CFLAGS) $(INCLUDES) $(LINKS) $< -o $@ $(LIBS)
 
-all: $(APP)
-	./$<
-
-clean:
-	rm *.o $(APP)
+all: $(patsubst %.c,$(BIN_DIR)/%.out,$(wildcard *.c))
+	echo ""
