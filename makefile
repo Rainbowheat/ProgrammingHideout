@@ -10,7 +10,7 @@ BIN_DIR = bin
 
 SRC_FILES = $(wildcard *.c)
 OUT_FILES = $(patsubst %.c,$(OUT_DIR)/%.o,$(SRC_FILES))
-BIN_FILES = $(patsubst %.c,$(OUT_DIR)/%.out,$(SRC_FILES))
+BIN_FILES = $(patsubst %.c,$(BIN_DIR)/%.out,$(SRC_FILES))
 
 .SECONDARY: $(OUT_FILES)
 
