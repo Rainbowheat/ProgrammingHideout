@@ -8,7 +8,11 @@ LIBS =
 OUT_DIR = out
 BIN_DIR = bin
 
-.SECONDARY: $(patsubst %.c,$(OUT_DIR)/%.o,$(wildcard *.c))
+SRC_FILES = $(wildcard *.c)
+OUT_FILES = $(patsubst %.c,$(OUT_DIR)/%.o,$(SRC_FILES))
+BIN_FILES = $(patsubst %.c,$(OUT_DIR)/%.out,$(SRC_FILES))
+
+.SECONDARY: $(OUT_FILES)
 
 $(OUT_DIR)/%.o : %.c
 	$(CC) $(CFLAGS) $(INCLUDES) $(LINKS) -c $< -o $@ $(LIBS)
@@ -16,8 +20,8 @@ $(OUT_DIR)/%.o : %.c
 $(BIN_DIR)/%.out : $(OUT_DIR)/%.o
 	$(CC) $(CFLAGS) $(INCLUDES) $(LINKS) $< -o $@ $(LIBS)
 
-outs: $(patsubst %.c,$(OUT_DIR)/%.o,$(wildcard *.c))
-bins: $(patsubst %.c,$(BIN_DIR)/%.out,$(wildcard *.c))
+outs: $(OUT_FILES)
+bins: $(BIN_FILES)
 
 clean:
 	rm -f $(OUT_DIR)/*.o $(BIN_DIR)/*.out
