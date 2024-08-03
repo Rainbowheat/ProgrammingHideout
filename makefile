@@ -1,4 +1,4 @@
-all: outs bins syms
+all: outs bins
 
 CC = gcc
 CFLAGS = -Wall -g
@@ -7,7 +7,6 @@ LINKS =
 LIBS =
 OUT_DIR = out
 BIN_DIR = bin
-SYM_DIR = sym
 
 .SECONDARY: $(patsubst %.c,$(OUT_DIR)/%.o,$(wildcard *.c))
 
@@ -17,12 +16,8 @@ $(OUT_DIR)/%.o : %.c
 $(BIN_DIR)/%.out : $(OUT_DIR)/%.o
 	$(CC) $(CFLAGS) $(INCLUDES) $(LINKS) $< -o $@ $(LIBS)
 
-$(SYM_DIR)/% : $(OUT_DIR)/%.o
-	nm $< > $@
-
 outs: $(patsubst %.c,$(OUT_DIR)/%.o,$(wildcard *.c))
-syms: $(patsubst %.c,$(SYM_DIR)/%,$(wildcard *.c))
 bins: $(patsubst %.c,$(BIN_DIR)/%.out,$(wildcard *.c))
 
 clean:
-	rm -f $(OUT_DIR)/*.o $(BIN_DIR)/*.out $(SYM_DIR)/*
+	rm -f $(OUT_DIR)/*.o $(BIN_DIR)/*.out

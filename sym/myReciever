@@ -1,4 +1,0 @@
-0000000000000000 T get_in_addr
-0000000000000029 T main
-                 U memset
-                 U __stack_chk_fail

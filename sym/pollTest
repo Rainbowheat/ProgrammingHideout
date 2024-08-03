@@ -1,5 +1,0 @@
-0000000000000000 T main
-                 U poll
-                 U printf
-                 U puts
-                 U __stack_chk_fail
