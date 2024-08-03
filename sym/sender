@@ -1,0 +1,16 @@
+                 U close
+                 U exit
+                 U fprintf
+                 U freeaddrinfo
+                 U fwrite
+                 U gai_strerror
+                 U getaddrinfo
+0000000000000000 T main
+                 U memset
+                 U perror
+                 U printf
+                 U sendto
+                 U socket
+                 U __stack_chk_fail
+                 U stderr
+                 U strlen
